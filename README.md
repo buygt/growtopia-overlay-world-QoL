@@ -30,11 +30,11 @@ Once you have the rttex file, rename it to "overlay"
 
 <img width="770" height="113" alt="Screenshot 2026-03-02 164702" src="https://github.com/user-attachments/assets/5cde38b6-0587-4a76-9ddd-2acd561b8fab" />
 
-Open your growtopia folder (with "open file location on growtopia icon or WIN+R and type %localappdata% and find) and go to game folder and drop the file there (not on top of another file)
+Open your growtopia folder (with "open file location" on growtopia icon or WIN+R and type %localappdata% and find) and go to game folder and drop the file there (not on top of another file)
 
 <img width="886" height="717" alt="Screenshot 2026-03-02 165111" src="https://github.com/user-attachments/assets/51ffa0b0-a199-43e0-9dee-3ac213ab413b" />
 
-Done, now you can open your game and every world has the overlay (you can change the options in the qol settings)
+Done, now you can open your game and every world has the overlay (you can change the options in-game in the qol settings)
 
 <img width="1276" height="940" alt="Screenshot 2026-03-02 165631" src="https://github.com/user-attachments/assets/6ff1ca2b-8163-4db7-970a-7016f3cf1506" />
 
