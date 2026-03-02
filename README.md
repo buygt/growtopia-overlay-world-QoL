@@ -1,3 +1,5 @@
+(Note: dinput8.dll is not open source here so download it at your own risk!)
+
 What is added
 
 - Supports both 2048x1024 and 4096x2048 image sizes (4096x2048 better quality)
