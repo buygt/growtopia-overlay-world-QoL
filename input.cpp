@@ -33,8 +33,9 @@ REGISTER_GAME_FUNCTION(OnConsoleInput,
                        __fastcall, void, VariantList*);
 
 // Fix for Linker Error: The function is actually inside this class
-class AnchorCameraToPlayerPatch {
-public:
+class AnchorCameraToPlayerPatch
+{
+  public:
     static void OnOverlayCallback(VariantList* pVariant);
 };
 
@@ -74,7 +75,7 @@ class QuickbarHotkeys : public patch::BasePatch
     static void __fastcall OnConsoleInput(VariantList* pVL)
     {
         real::OnConsoleInput(pVL);
-        
+
         int keyCode = pVL->Get(2).GetUINT32();
 
         // CTRL + O TOGGLE
@@ -90,14 +91,16 @@ class QuickbarHotkeys : public patch::BasePatch
 
                 // Create callback list using the updated value as a UINT
                 VariantList vl;
-                vl.Get(0).Set(newState); 
+                vl.Get(0).Set(newState);
                 AnchorCameraToPlayerPatch::OnOverlayCallback(&vl);
 
                 // Update UI visually
                 Entity* pGUI = real::GetApp()->m_entityRoot->GetEntityByName("GUI");
-                if (pGUI) {
+                if (pGUI)
+                {
                     Entity* pOptions = pGUI->GetEntityByNameRecursively("OptionsPage");
-                    if (pOptions) {
+                    if (pOptions)
+                    {
                         VariantList refreshVL;
                         refreshVL.Get(0).Set("OnValueChange");
                         pOptions->GetShared()->GetFunction("OnMessage")->sig_function(&refreshVL);
@@ -168,8 +171,8 @@ class QuickToggleSpaceToPunch : public patch::BasePatch
                 return;
 
             Entity* pGUI = real::GetApp()->m_entityRoot->GetEntityByName("GUI");
-            if (pGUI->GetEntityByName("OptionsMenu") ||
-                pGUI->GetEntityByName("ResolutionMenu") || pGUI->GetEntityByName("OptionsPage"))
+            if (pGUI->GetEntityByName("OptionsMenu") || pGUI->GetEntityByName("ResolutionMenu") ||
+                pGUI->GetEntityByName("OptionsPage"))
                 return;
 
             Variant* pVariant = real::GetApp()->GetVar("useSpacebarForPunch");
@@ -180,7 +183,8 @@ class QuickToggleSpaceToPunch : public patch::BasePatch
 
     static void AddCustomKeybinds()
     {
-        real::AddKeyBinding(real::GetArcadeComponent(), "chatkey_togglestp", 80, m_stpKeycode, 1, 1);
+        real::AddKeyBinding(real::GetArcadeComponent(), "chatkey_togglestp", 80, m_stpKeycode, 1,
+                            1);
     }
 
   private:
@@ -251,7 +255,10 @@ class ToggleCtrlJump : public patch::BasePatch
         {
             VariantList keyToRemove;
             keyToRemove.m_variant[0].Set("tcj_Jump");
-            real::GetArcadeComponent()->GetShared()->GetFunction("RemoveKeyBindingsStartingWith")->sig_function(&keyToRemove);
+            real::GetArcadeComponent()
+                ->GetShared()
+                ->GetFunction("RemoveKeyBindingsStartingWith")
+                ->sig_function(&keyToRemove);
         }
     }
 };
@@ -266,7 +273,7 @@ class QuickDropPatch : public patch::BasePatch
         auto& events = game::EventsAPI::get();
         events.m_sig_netControllerInput.connect(&NetControllerLocalOnArcadeInput);
         events.m_sig_addWasdKeys.connect(&AddCustomKeybinds);
-        
+
         m_keycode = events.acquireKeycode();
 
         real::OpenDropOptions =
@@ -276,13 +283,14 @@ class QuickDropPatch : public patch::BasePatch
         optionsMgr.addCheckboxOption("qol", "Input", "osgt_qol_quick_drop",
                                      "Enable Q key to open drop current item dialog",
                                      &OnQuickDropToggledCallback);
-                                     
+
         m_isEnabled = real::GetApp()->GetVar("osgt_qol_quick_drop")->GetUINT32() == 1;
     }
 
     static void __fastcall NetControllerLocalOnArcadeInput(void* this_, int keyCode, bool bKeyFired)
     {
-        if (!m_isEnabled || !bKeyFired) return;
+        if (!m_isEnabled || !bKeyFired)
+            return;
 
         if (keyCode == m_keycode)
         {
@@ -290,8 +298,8 @@ class QuickDropPatch : public patch::BasePatch
                 return;
 
             Entity* pGUI = real::GetApp()->m_entityRoot->GetEntityByName("GUI");
-            if (pGUI->GetEntityByName("OptionsMenu") ||
-                pGUI->GetEntityByName("ResolutionMenu") || pGUI->GetEntityByName("OptionsPage"))
+            if (pGUI->GetEntityByName("OptionsMenu") || pGUI->GetEntityByName("ResolutionMenu") ||
+                pGUI->GetEntityByName("OptionsPage"))
                 return;
 
             real::OpenDropOptions();
