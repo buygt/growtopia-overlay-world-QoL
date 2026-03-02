@@ -1,5 +1,7 @@
 (Note: dinput8.dll file is not open source here so only download it at your own risk!)
 
+(Note 2: I wasn't able to fix the code, so it's going to be unofficial, most of the // lines got removed and I wanted to add them back but everything broke and a single bracket ] prevented me from fully fixing the code. So the unofficial one is just AI code with a lot of info text removed, thankfully Cernodile is making this concept himself)
+
 What is added
 
 - Supports both 2048x1024 and 4096x2048 image sizes (4096x2048 better quality)
