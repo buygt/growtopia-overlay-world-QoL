@@ -1,10 +1,10 @@
-#include "game/struct/graphics/surface.hpp"
 #include "game/game.hpp"
 #include "game/signatures.hpp"
 #include "game/struct/graphics/background.hpp"
 #include "game/struct/graphics/background_blank.hpp"
 #include "game/struct/graphics/background_blood.hpp"
 #include "game/struct/graphics/background_default.hpp"
+#include "game/struct/graphics/surface.hpp"
 #include "patch/patch.hpp"
 #include "utils/utils.hpp"
 
@@ -1319,7 +1319,7 @@ class AnchorCameraToPlayerPatch : public patch::BasePatch
     static void WorldRendererOnRender(WorldRenderer* this_, CL_Vec2f* p2)
     {
         real::WorldRendererOnRender(this_, p2);
-        
+
         if (m_centerCameraOnPlayer)
         {
             // We will shadow out the out of bounds areas to prevent confusion with centered camera.
@@ -1887,7 +1887,8 @@ class HotbarExpanded : public patch::BasePatch
             // Set right/jump button bottom paddings to none to prevent input leakage on hotbar,
             // also get rid of the annoyinging large right padding on arrows. This also makes
             // paddings equal between buttons.
-            if (doTouchButtonsNeedPaddings(pTouchRight)) {
+            if (doTouchButtonsNeedPaddings(pTouchRight))
+            {
                 float fPaddingRef = vJumpButtonSize.x / 4;
                 Rectf rPaddingRect;
                 rPaddingRect.left = 30.0f;
