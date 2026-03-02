@@ -1,4 +1,4 @@
-(Note: dinput8.dll is not open source here so download it at your own risk!)
+(Note: dinput8.dll file is not open source here so download it at your own risk!)
 
 What is added
 
